@@ -1,40 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+
+    <style>
+      .calculator {
+        width: 250px;
+        height: 400px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      #num {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      .numbers {
+        padding: 30px;
+      }
+      input {
+        width: 215px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
     <div class="calculator">
-        <input type="text" class="screen" id="display" >
-        <div class="buttons">
-            <div id="num">
+      <input type="text" class="screen" id="display" />
+      <div class="buttons">
+        <div id="num"></div>
 
-            </div>
-
-
-
-            <button class="blank" onclick="">AC</button>
-            <button class="clear" onclick="">C</button>
-            <button class="operator" onclick="">/</button>
-            <button class="operator" onclick="">x</button>
-            <button class="operator" onclick="">-</button>
-            
-            
-        </div>
+        <button class="blank" onclick="">AC</button>
+        <button class="clear" onclick="">C</button>
+        <button class="operator" onclick="">/</button>
+        <button class="operator" onclick="">x</button>
+        <button class="operator" onclick="">-</button>
+      </div>
     </div>
 
-
     <script>
-        let num = document.getElementById("num")
-        for(let i =0; i<=9; i++){
-            const buttons = document.createElement("button");
-            buttons.textContent = i;
-            
-            num.appendChild(buttons);
-        }
-
+      let num = document.getElementById("num");
+      for (let i = 0; i <= 9; i++) {
+        const buttons = document.createElement("button");
+        buttons.textContent = i;
+        buttons.className = "numbers";
+        num.appendChild(buttons);
+      }
     </script>
-</body>
+  </body>
 </html>
