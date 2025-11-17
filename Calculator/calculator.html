@@ -9,28 +9,32 @@
     <div class="calculator">
         <input type="text" class="screen" id="display" >
         <div class="buttons">
+            <div id="num">
+
+            </div>
+
+
+
+            <button class="blank" onclick="">AC</button>
             <button class="clear" onclick="">C</button>
             <button class="operator" onclick="">/</button>
             <button class="operator" onclick="">x</button>
             <button class="operator" onclick="">-</button>
             
-            <button onclick="">7</button>
-            <button onclick="">8</button>
-            <button onclick="">9</button>
-            <button class="operator" onclick="">+</button>
             
-            <button onclick="">4</button>
-            <button onclick="">5</button>
-            <button onclick="">6</button>
-            <button onclick="">=</button>
-            
-            <button onclick="">1</button>
-            <button onclick="">2</button>
-            <button onclick="">3</button>
-            
-            <button onclick="" >0</button>
-            <button onclick="">.</button>
         </div>
     </div>
+
+
+    <script>
+        let num = document.getElementById("num")
+        for(let i =0; i<=9; i++){
+            const buttons = document.createElement("button");
+            buttons.textContent = i;
+            
+            num.appendChild(buttons);
+        }
+
+    </script>
 </body>
 </html>
