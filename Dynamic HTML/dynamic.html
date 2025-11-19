@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic</title>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="addingType" />
+      <select name="inputType" id="inputType">
+        <option value="text">text</option>
+        <option value="number">number</option>
+        <option value="email">email</option>
+        <option value="password">password</option>
+        <option value="checkbox">checkbox</option>
+        <option value="radio">radio</option>
+      </select>
+      <button id="add">Add</button>
+
+      <div id="dynamicField"></div>
+      <br />
+      <br />
+      <button id="save">Save</button>
+      <p id="error" style="color: red"></p>
+    </div>
+
+    <script>
+      const dynamicField = document.getElementById("dynamicField");
+      const add = document.getElementById("add");
+      const save = document.getElementById("save");
+      const errorMsg = document.getElementById("error");
+
+      function dynamicInput() {
+        const inputType = document.getElementById("inputType").value;
+        const addingType = document.getElementById("addingType").value;
+        const newDiv = document.createElement("div");
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.className = "dynamicInput";
+
+        label.textContent = addingType;
+        input.type = inputType;
+        newDiv.appendChild(label);
+        newDiv.appendChild(input);
+
+        dynamicField.appendChild(newDiv);
+      }
+
+      add.addEventListener("click", dynamicInput);
+
+      function validation() {
+        errorMsg.textContent = "";
+
+        const allInputs = document.getElementsByClassName("dynamicInput");
+        errorMsg.style.color = "red";
+        for (let i = 0; i < allInputs.length; i++) {
+          let field = allInputs[i];
+          let type = field.type;
+          let value = field.value;
+
+          if (type === "text" && value === "") {
+            errorMsg.textContent = "Text field cannot be empty!";
+            return;
+          }
+
+          if (type === "number" && isNaN(value)) {
+            errorMsg.textContent = "Please enter a valid number!";
+            return;
+          }
+
+          if (type === "email") {
+            if (value === "") {
+              errorMsg.textContent = "Email cannot be empty.";
+              return;
+            }
+
+            if (!(value.includes("@") && value.includes("."))) {
+              errorMsg.textContent =
+                "Enter a valid email address (i.e anything@example.com).";
+              return;
+            }
+
+            const atIndex = value.indexOf("@");
+            const dotIndex = value.lastIndexOf(".");
+
+            if (
+              atIndex < 1 ||
+              dotIndex < atIndex + 2 ||
+              dotIndex + 2 >= value.length
+            ) {
+              errorMsg.textContent =
+                "Enter a valid email address (i.e anything@example.com).";
+              return;
+            }
+          }
+
+          if (type === "password" && value.length < 4) {
+            errorMsg.textContent = "Password must be 4 character!";
+            return;
+          }
+        }
+
+        errorMsg.style.color = "green";
+        errorMsg.textContent = "All inputs are valid! Saved successfully.";
+      }
+
+      save.addEventListener("click", validation);
+    </script>
+  </body>
+</html>
